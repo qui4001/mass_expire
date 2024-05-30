@@ -1,0 +1,23 @@
+{
+    "name": "Test Module",
+    "namespace": "WCM\\TestModule", 
+    "description": "This is a description of the module, and will be displayed below the module name in the user interface.",
+    "framework-version": 12,
+    "authors": [
+        {
+            "name": "Quazi Irfan",
+            "email": "qui4001@med.cornell.edu",
+            "institution": "WCM"
+        }
+    ],
+    "links": {
+      "control-center": [
+         {
+            "name": "Mass Expire",
+            "icon": "fas fa-recipt",
+            "url": "mass_expire.php",
+            "show-header-and-footer": true
+         }
+      ]
+    }
+}
