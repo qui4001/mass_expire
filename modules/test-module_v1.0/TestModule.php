@@ -17,7 +17,7 @@ class TestModule extends \ExternalModules\AbstractExternalModule
         ?>
             <script type='text/javascript'>
                 document.addEventListener('DOMNodeInserted', () => {
-                    if(document.getElementById('view_user_div').childElementCount > 1 && !document.getElementById('mass_expire')){
+                    if(document.getElementById('view_user_div') && document.getElementById('view_user_div').childElementCount > 1 && !document.getElementById('mass_expire')){
                         me_button = document.createElement('button');
                         me_button.id = 'mass_expire';
                         me_button.textContent = 'Mass Expire';
