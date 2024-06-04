@@ -14,20 +14,25 @@ class TestModule extends \ExternalModules\AbstractExternalModule
 {
     function redcap_control_center()
     {
-        // make a JS Get call to the php file so we don't open a new browser tab
-        // const xhr = new XMLHttpRequest()
-        // xhr.open("GET", "http://localhost/plugins/mass_expire.php?username=test1", true)
-        // xhf.send()
-        print  "<div id='MassExpire'>
-                    <a href='../../plugins/mass_expire.php?username=test1' target='_blank'>Mass Expire this user.</a>
-                </div>";
-
-        // Use JavaScript/jQuery to append our link to the bottom of the left-hand menu
-        print  "<script type='text/javascript'>
+        ?>
+            <script type='text/javascript'>
                 document.addEventListener('DOMNodeInserted', () => {
-                    if(document.getElementById('view_user_div').childElementCount > 1)
-                        $( 'div#MassExpire' ).appendTo( 'div#view_user_div' );
-                    });
-                </script>";
+                    if(document.getElementById('view_user_div').childElementCount > 1 && !document.getElementById('mass_expire')){
+                        me_button = document.createElement('button');
+                        me_button.id = 'mass_expire';
+                        me_button.textContent = 'Mass Expire';
+                        document.getElementById('view_user_div').appendChild(me_button);
+
+                        me_button.addEventListener('click', function(){
+                            // fetch('https://api.github.com/repos/octocat/Spoon-Knife/issues')
+                            fetch('../../plugins/mass_expire.php?username=test1')
+                                .then(response => response.text())
+                                .then(result => alert('Update user'));
+                        });
+                    }
+                });
+            </script>
+        <?php
+
     }
 }
