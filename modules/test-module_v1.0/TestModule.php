@@ -27,7 +27,7 @@ class TestModule extends \ExternalModules\AbstractExternalModule
                             // fetch('https://api.github.com/repos/octocat/Spoon-Knife/issues')
                             fetch('../../plugins/mass_expire.php?username=test1')
                                 .then(response => response.text())
-                                .then(result => alert('Update user'));
+                                .then(result => alert('Expired user from all projects.'));
                         });
                     }
                 });

@@ -23,6 +23,3 @@ while ($row = mysqli_fetch_assoc($result)) {
         // echo "Updated project log.</br></br>\n";
     }
 }
-
-// num of expired project
-echo $result->num_rows;
