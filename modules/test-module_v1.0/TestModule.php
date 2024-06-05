@@ -33,7 +33,7 @@ class TestModule extends \ExternalModules\AbstractExternalModule
                             username = user_details.rows[2].cells[1];
                             username = trim(username.innerHTML);
                             // open('../../plugins/mass_expire.php?username='+username, target="_blank", "popup=yes,left=100,top=100,width=480,height=320");
-                fetch('http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username=test1') .then(response => response.text()) .then(result => console.log(result));
+                            fetch('http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username=test1') .then(response => response.text()) .then(result => { const data = JSON.parse(result); alert(data.value); });
                             // fetch('../../plugins/mass_expire.php?username='+username) .then(response => response.text()) .then(result => alert('Expired user from all projects.'));
                         });
                     }
