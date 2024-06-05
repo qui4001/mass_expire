@@ -11,19 +11,11 @@
         }
     ],
     "links": {
-      "control-center": [
-         {
-            "name": "Mass Expire",
-            "icon": "fas fa-recipt",
-            "url": "mass_expire.php",
-            "show-header-and-footer": true
-         }
-      ],
         "project":[
             {
                 "name": "My Project Page",
                 "icon": "fas fa-receipt",
-                "url": "test.php",
+                "url": "mass_expire.php",
                 "show-header-and-footer": true
             }
         ]

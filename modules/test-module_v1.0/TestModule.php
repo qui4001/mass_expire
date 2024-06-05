@@ -15,13 +15,13 @@ class TestModule extends \ExternalModules\AbstractExternalModule
     {
 
         $this->initializeJavascriptModuleObject();
-        $em_url = $this->escape($this->getUrl("test.php"));
-        $this->tt_addToJavascriptModuleObject("greeting",$em_url);
+        $em_url = $this->escape($this->getUrl("mass_expire.php"));
+        $this->tt_addToJavascriptModuleObject("fullurl",$em_url);
 
         ?>
         <script>
             var module = <?=$this->getJavascriptModuleObjectName()?>;
-            var base_url = module.tt('greeting');
+            var base_url = module.tt('fullurl');
             base_url = new DOMParser().parseFromString(base_url, "text/html");
             base_url = base_url.documentElement.textContent;
 
