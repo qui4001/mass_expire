@@ -1,10 +1,7 @@
 <?php
 
-// popup
-// show un-expired user count
-// alternate to force refresh
-// url argument needs to be dynamic
 // error handling try/catch during query execution
+// error handling when printing out the resut of fetch
 
 // Set the namespace defined in your config file
 namespace WCM\TestModule;
@@ -32,9 +29,10 @@ class TestModule extends \ExternalModules\AbstractExternalModule
                             user_details = document.getElementById('indv_user_info');
                             username = user_details.rows[2].cells[1];
                             username = trim(username.innerHTML);
-                            // open('../../plugins/mass_expire.php?username='+username, target="_blank", "popup=yes,left=100,top=100,width=480,height=320");
-                            fetch('http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username=test1') .then(response => response.text()) .then(result => { const data = JSON.parse(result); alert('Newly expired project ' + data.unexpired + ' and already expired ' + data.already);});
-                            // fetch('../../plugins/mass_expire.php?username='+username) .then(response => response.text()) .then(result => alert('Expired user from all projects.'));
+                            url = 'http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username='+username;
+                            
+                            // open(url, target="_blank", "popup=yes,left=100,top=100,width=480,height=320");
+                            fetch(url) .then(response => response.text()) .then(result => { const data = JSON.parse(result); alert('Newly expired project ' + data.unexpired + ' and already expired ' + data.already);});
                         });
                     }
                 });
