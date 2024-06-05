@@ -21,13 +21,23 @@ class TestModule extends \ExternalModules\AbstractExternalModule
 
         ?>
         <script>
-            $(function(){
-                var module = <?=$this->getJavascriptModuleObjectName()?>;
-                console.log(module.tt('greeting'));
-                fetch('http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username=test1')
-                    .then(response => response.text())
-                    .then(result => console.log(result));
-            })
+                document.addEventListener('DOMNodeInserted', () => {
+                    if(document.getElementById('view_user_div') && document.getElementById('view_user_div').childElementCount > 1 && !document.getElementById('mass_expire')){
+                        me_button = document.createElement('button');
+                        me_button.id = 'mass_expire';
+                        me_button.textContent = 'Mass Expire';
+                        document.getElementById('indv_user_info').rows[15].cells[1].append(me_button);
+
+                        me_button.addEventListener('click', function(){
+                            user_details = document.getElementById('indv_user_info');
+                            username = user_details.rows[2].cells[1];
+                            username = trim(username.innerHTML);
+                            // open('../../plugins/mass_expire.php?username='+username, target="_blank", "popup=yes,left=100,top=100,width=480,height=320");
+                fetch('http://localhost/redcap_v14.0.14/ExternalModules/?prefix=test-module&page=test&username=test1') .then(response => response.text()) .then(result => console.log(result));
+                            // fetch('../../plugins/mass_expire.php?username='+username) .then(response => response.text()) .then(result => alert('Expired user from all projects.'));
+                        });
+                    }
+                });
         </script>
         <?php
 

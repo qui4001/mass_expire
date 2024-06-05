@@ -15,7 +15,6 @@ $query = "select * from redcap_user_rights where username = '$username' and (exp
 
 $result = mysqli_query($conn, $query);
 
-// echo json_encode(['value' => $result->num_rows]);
 
 while ($row = mysqli_fetch_assoc($result)) {
     $project_id = $row['project_id'];
@@ -29,3 +28,4 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 }
 
+echo json_encode(['value' => $result->num_rows]);
