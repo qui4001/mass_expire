@@ -1,5 +1,6 @@
 <?php
 
+
 require_once "../../redcap_connect.php";
 
 header('Content-type: application/json');
@@ -26,6 +27,7 @@ while ($row = mysqli_fetch_assoc($unexpired_result)) {
     
     if(db_query($temp_query)){
         \REDCap::logEvent("Updated User Expiration " . $username, "user = '" . $username. "'", $temp_query, NULL, NULL, $project_id);
+        $module->log('Expired user \''.$username.'\' from project ID '.$project_id.' on '.$today);
         // echo "Updated project log.</br></br>\n";
     }
 }
