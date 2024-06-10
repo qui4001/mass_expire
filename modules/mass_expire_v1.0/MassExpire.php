@@ -17,7 +17,6 @@
 
 // Set the namespace defined in your config file
 namespace WeillCornellMedicine\MassExpire;
-// namespace WCM\TestModule;
 
 // Declare your module class, which must extend AbstractExternalModule 
 class MassExpire extends \ExternalModules\AbstractExternalModule
@@ -26,7 +25,7 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
     {
 
         $this->initializeJavascriptModuleObject();
-        $em_url = $this->escape($this->getUrl("mass_expire.php"));
+        $em_url = $this->escape($this->getUrl("expire_user.php"));
         $this->tt_addToJavascriptModuleObject("fullurl",$em_url);
 
         ?>

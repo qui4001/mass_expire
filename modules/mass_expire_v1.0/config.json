@@ -18,9 +18,9 @@
     "links": {
         "project":[
             {
-                "name": "My Project Page",
+                "name": "Expire User Page",
                 "icon": "fas fa-receipt",
-                "url": "mass_expire.php",
+                "url": "expire_user.php",
                 "show-header-and-footer": true
             }
         ]
