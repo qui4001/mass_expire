@@ -16,10 +16,11 @@
 // investigate ORM https://stackoverflow.com/questions/129677/how-can-i-sanitize-user-input-with-php
 
 // Set the namespace defined in your config file
-namespace WCM\TestModule;
+namespace WeillCornellMedicine\MassExpire;
+// namespace WCM\TestModule;
 
 // Declare your module class, which must extend AbstractExternalModule 
-class TestModule extends \ExternalModules\AbstractExternalModule
+class MassExpire extends \ExternalModules\AbstractExternalModule
 {
     function redcap_control_center()
     {
