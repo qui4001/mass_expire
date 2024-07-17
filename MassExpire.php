@@ -51,18 +51,19 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
                         username = user_details.rows[2].cells[1];
                         username = trim(username.innerHTML);
                         query_url = base_url + '&username=' + username;
-                        
-                        // Will be used in phase 2
-                        // open(query_url, target="_blank", "popup=yes,left=100,top=100,width=480,height=320");
 
                         fetch(query_url)
                             .then(response => response.text())
                             .then(result => { 
-                                // console.log(result);
-                                const data = JSON.parse(result); 
-                                // alert('Newly expired project ' + data.unexpired + ' and already expired ' + data.already);
-                                alert('Projects expired with today\'s date: ' + data.unexpired + 
-                                        '\nProjects already expired (no action taken): ' + data.already );
+                                simpleDialog(
+                                    "Content of the dialog " + result, 
+                                    "dialog title", null, null, 
+                                    "console.log('onCloseJs')", "closeBtnTxt",
+                                    "simpleDialog('Expired from 10 projects', 'title', null, 200)", "okBtnTxt"
+                                );
+                                // const data = JSON.parse(result); 
+                                // alert('Projects expired with today\'s date: ' + data.unexpired + 
+                                        // '\nProjects already expired (no action taken): ' + data.already );
                             });
                     });
                 }
