@@ -53,6 +53,7 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
                                         const mass_expire_http = await fetch(query_url);
                                         const mass_expire_json = await mass_expire_http.text();
                                         const data = JSON.parse(mass_expire_json);
+//                                         console.log(mass_expire_http.status, mass_expire_json);
 
                                         let dialog_message = '';
                                         if(data.status === 'failure')

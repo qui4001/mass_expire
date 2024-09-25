@@ -22,7 +22,7 @@ if(ExternalModules::isSuperUser()){
     $num_projects_result = $num_projects->fetch_assoc();
 
     if(!$num_projects_result['proj_count']){
-        $error_json = json_encode(['status'=>'failure', 'description'=>'User <b>'. $username . '</b> is not associated with any project.']);
+        $error_json = json_encode(['status'=>'failure', 'description'=>'User <b>'. $module->escape($username) . '</b> is not associated with any project.']);
         echo $error_json;
         exit();
     }
@@ -39,6 +39,7 @@ if(ExternalModules::isSuperUser()){
         [$username, $today]
     );
 
+    // if there are projects to expire
     while ($row = $unexpired_query->fetch_assoc()) {
         $project_id = $row['project_id'];
         $update_query = $module->query(
