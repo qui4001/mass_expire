@@ -2,7 +2,7 @@
     "name": "Mass Expire",
     "namespace": "WeillCornellMedicine\\MassExpire", 
     "description": "Expire an user from all projects from Control Panel.",
-    "framework-version": 13,
+    "framework-version": 14,
     "authors": [
         {
             "name": "Quazi Irfan",
