@@ -21,6 +21,7 @@ if(ExternalModules::isSuperUser()){
 
     $num_projects_result = $num_projects->fetch_assoc();
 
+    // check if user is associated with any project
     if(!$num_projects_result['proj_count']){
         $error_json = json_encode(['status'=>'failure', 'description'=>'User <b>'. $module->escape($username) . '</b> is not associated with any project.']);
         echo $error_json;
@@ -29,17 +30,19 @@ if(ExternalModules::isSuperUser()){
 
     $today = date("Y-m-d");
 
+    // projects the user was already expired in
     $already_expired = $module->query(
         "select * from redcap_user_rights where username = ? and not (expiration is null or expiration > ?)", 
         [$username, $today]
     );
 
+    // projects the user will be expired from
     $unexpired_query = $module->query(
         "select * from redcap_user_rights where username = ? and (expiration is null or expiration > ?)",
         [$username, $today]
     );
 
-    // if there are projects to expire
+    // loop over these projects
     while ($row = $unexpired_query->fetch_assoc()) {
         $project_id = $row['project_id'];
         $update_query = $module->query(
@@ -56,11 +59,10 @@ if(ExternalModules::isSuperUser()){
     }
 
     $return_json = json_encode(['status'=>'success','unexpired' => $unexpired_query->num_rows, 'already' => $already_expired->num_rows]); 
-    // for ($x = 0; $x <= 100000000; $x++) {}
     echo $return_json;
 }
 else{
-    $error_json = json_encode(['status'=>'failure', 'description'=>'User is not a superuser.']);
+    $error_json = json_encode(['status'=>'failure', 'description'=>'Insufficient privilege.']);
     echo $error_json;
 }
 ?>
