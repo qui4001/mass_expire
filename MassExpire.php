@@ -39,8 +39,12 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
                             me_button.id = 'mass_expire';
                             me_button.textContent = 'Mass Expire';
 
-                            let user_details = document.getElementById('indv_user_info');
-                            user_details.rows[16].cells[1].append(me_button);
+                            let user_details = document.getElementById('indv_user_info').children[0];
+                            for(let i = 0; i<user_details.children.length; i++){
+                                if(user_details.rows[i].textContent.includes("Projects user can access")){
+                                    user_details.rows[i].cells[1].append(me_button);
+                                }
+                            }
 
                             me_button.addEventListener('click', function(){
                                 username = user_details.rows[2].cells[1];
@@ -73,7 +77,7 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
 
                                         showProgress(false);
                                         simpleDialog(
-                                            'Internal Error - <b> ' + e + '</b>',
+                                            'Internal Error - <b> ' + e + '</b> <br> Please contact REDcap Administrator.',
                                             "Mass Expire", null, null,
                                             null, "Close",
                                             null, null
@@ -96,6 +100,5 @@ class MassExpire extends \ExternalModules\AbstractExternalModule
             })();
         </script>
         <?php
-
     }
 }
